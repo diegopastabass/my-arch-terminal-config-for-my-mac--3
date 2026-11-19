@@ -6,7 +6,12 @@ Replica en un Mac la terminal del equipo Linux: zsh con Powerlevel10k, plugins, 
 
 ```
 mac-terminal-setup/
-├── install.sh                      # instalador (solo macOS)
+├── install.sh                      # terminal: zsh + kitty (solo macOS)
+├── install-vscode.sh               # VS Code + extensiones + settings.json
+├── install-neovim.sh               # Neovim + tu config (NvChad)
+├── install-latex.sh                # TeX Live + extensiones LaTeX para VS Code
+├── lib/
+│   └── common.sh                   # funciones compartidas por los instaladores
 ├── README.md
 └── dotfiles/
     ├── zshrc                       # ~/.zshrc (adaptado a macOS)
@@ -14,11 +19,15 @@ mac-terminal-setup/
     ├── kitty/
     │   ├── kitty.conf              # ~/.config/kitty/kitty.conf (adaptado a macOS)
     │   └── color.ini               # ~/.config/kitty/color.ini (copia exacta)
-    └── zsh/
-        └── sudo.plugin.zsh         # plugin zsh-sudo (copia exacta)
+    ├── zsh/
+    │   └── sudo.plugin.zsh         # plugin zsh-sudo (copia exacta)
+    ├── vscode/
+    │   ├── settings.json           # ajustes de VS Code (terminal adaptada a macOS)
+    │   └── extensions.txt          # lista de extensiones
+    └── nvim/                       # tu config de Neovim (sin .git)
 ```
 
-## Instalación
+## Terminal (zsh y kitty)
 
 Copia la carpeta `mac-terminal-setup` al Mac (AirDrop, USB, git, etc.) y ejecuta:
 
@@ -37,6 +46,28 @@ El script:
 6. Valida la sintaxis de `~/.zshrc`.
 
 Es idempotente: puedes volver a ejecutarlo sin problema.
+
+## VS Code, Neovim y LaTeX
+
+Cada entorno tiene su propio script y son independientes entre sí:
+
+```bash
+bash install-vscode.sh   # VS Code, extensiones y settings.json
+bash install-neovim.sh   # Neovim y tu config de NvChad
+bash install-latex.sh    # MacTeX, latexmk, biber y extensiones LaTeX (requiere VS Code)
+```
+
+- **VS Code**: instala la app con Homebrew, las extensiones de `dotfiles/vscode/extensions.txt` y `settings.json`. Las claves de terminal pasaron de `linux` a `osx` (`profiles`, `defaultProfile`) y `linuxExec` a `osxExec`.
+- **Neovim**: tu config es un fork de NvChad v2.5 con un cambio de tema (`onedark` → `gruvbox`). El script clona `NvChad/starter` en el commit base `c3d1fb6`, copia encima tus archivos y restaura los plugins según `lazy-lock.json`. Si ya existe `~/.config/nvim`, lo mueve al respaldo.
+- **LaTeX**: tu `settings.json` no tiene ajustes de LaTeX Workshop, así que el entorno lo definen las extensiones y TeX Live. El script instala MacTeX sin apps GUI (~4 GB), que equivale al `texlive-meta` de tu Arch, y compila un documento de prueba al final.
+
+Notas para revisar:
+
+- `terminal.external.osxExec` quedó en `kitty`. No lo pude probar en macOS.
+- Tu `settings.json` referencia Dart (`[dart]`) y Prettier (`editor.defaultFormatter`), pero esas extensiones no están en tu lista. No las agregué.
+- La config de Neovim usa NvChad `v2.5`. No la actualices al starter v3 sin revisar `chadrc.lua`.
+- El `argv.json` de VS Code tiene flags de Linux y no se copió.
+- `install-neovim.sh` necesita acceso HTTPS a GitHub para clonar el starter.
 
 ## Qué cambió respecto a Linux
 

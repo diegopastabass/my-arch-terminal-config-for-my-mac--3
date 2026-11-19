@@ -1,0 +1,28 @@
+{
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "dart.warnWhenEditingFilesOutsideWorkspace": false,
+  "database-client.autoSync": true,
+  "python.createEnvironment.trigger": "off",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "workbench.editor.empty.hint": "hidden",
+  "terminal.external.osxExec": "kitty",
+
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh"
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.ignoreProcessNames": ["zsh"],
+  "geminicodeassist.project": "powerful-mind-jjcf0",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "claudeCode.preferredLocation": "panel"
+}

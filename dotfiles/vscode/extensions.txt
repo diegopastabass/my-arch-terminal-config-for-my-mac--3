@@ -1,0 +1,11 @@
+# Extensiones de VS Code (una por línea). Generado desde `code --list-extensions`.
+anthropic.claude-code
+ckolkman.vscode-postgres
+cweijan.dbclient-jdbc
+james-yu.latex-workshop
+jdinhlife.gruvbox
+jebbs.plantuml
+mechatroner.rainbow-csv
+ms-azuretools.vscode-containers
+tomoki1207.pdf
+yongke.latex-wordcount
